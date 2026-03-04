@@ -238,7 +238,7 @@ from src.compliance.rules_engine import RulesEngine
 
 # Initialize components
 retriever = PolicyAwareRetriever(
-    jurisdiction="US",
+    jurisdiction="India",
     role="compliance_analyst"
 )
 
@@ -422,13 +422,13 @@ See [evaluation notebooks](notebooks/) for detailed performance metrics.
 
 ## Limitations & Future Work
 
-- **Current Scope**: Focus on major financial regulatory frameworks (SEC, FCA, EBA)
+- **Current Scope**: Focus on major Indian financial regulatory frameworks (RBI, SEBI, FIPB, IRDA)
 - **Document Types**: Primarily structured documents (policies, guidelines, standards)
 - **Future Enhancements**:
-  - Expanded regulatory framework coverage
-  - Real-time regulatory updates
+  - Expanded state-level regulatory coverage
+  - Real-time regulatory updates from RBI and SEBI
   - Deep learning-based compliance verification
-  - Multi-language support
+  - Multi-language support (Hindi, regional languages)
 
 ## License
 
