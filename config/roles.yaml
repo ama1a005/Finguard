@@ -1,0 +1,170 @@
+# India-Specific Roles and Permissions Configuration
+
+roles:
+  admin:
+    name: "System Administrator"
+    jurisdiction: "India"
+    access_level: 5
+    permissions:
+      - "manage_users"
+      - "manage_roles"
+      - "access_all_documents"
+      - "modify_compliance_rules"
+      - "view_audit_logs"
+      - "manage_jurisdictions"
+    can_access_all_states: true
+
+  bank_compliance_officer:
+    name: "Bank Compliance Officer"
+    jurisdiction: "India"
+    access_level: 4
+    permissions:
+      - "retrieve_banking_documents"
+      - "verify_rbi_compliance"
+      - "access_audit_logs"
+      - "generate_compliance_reports"
+      - "view_regulatory_guidelines"
+      - "flag_violations"
+    restricted_document_types:
+      - "customer_pii"
+      - "internal_memos"
+    can_access_states:
+      - "National"  # All-India jurisdiction
+
+  rbi_liaison:
+    name: "RBI Liaison Officer"
+    jurisdiction: "India"
+    access_level: 4
+    permissions:
+      - "retrieve_rbi_guidelines"
+      - "verify_rbi_compliance"
+      - "access_circulars"
+      - "monitor_regulatory_changes"
+      - "generate_rbi_reports"
+    restricted_document_types:
+      - "customer_sensitive_data"
+      - "internal_strategies"
+    can_access_states:
+      - "National"
+
+  sebi_compliance_manager:
+    name: "SEBI Compliance Manager"
+    jurisdiction: "India"
+    access_level: 4
+    permissions:
+      - "retrieve_securities_documents"
+      - "verify_sebi_compliance"
+      - "access_market_regulations"
+      - "monitor_disclosure_requirements"
+      - "generate_sebi_reports"
+    restricted_document_types:
+      - "customer_pii"
+      - "insider_information"
+    can_access_states:
+      - "National"
+
+  internal_auditor:
+    name: "Internal Auditor"
+    jurisdiction: "India"
+    access_level: 3
+    permissions:
+      - "retrieve_audit_documents"
+      - "verify_compliance"
+      - "generate_audit_reports"
+      - "access_transaction_logs"
+      - "view_audit_trails"
+    restricted_document_types:
+      - "customer_pii"
+      - "executive_decisions"
+    can_access_states:
+      - "National"
+
+  risk_manager:
+    name: "Risk Manager"
+    jurisdiction: "India"
+    access_level: 3
+    permissions:
+      - "retrieve_risk_documents"
+      - "monitor_compliance_risks"
+      - "access_regulatory_framework"
+      - "generate_risk_reports"
+      - "evaluate_operational_risks"
+    restricted_document_types:
+      - "customer_pii"
+      - "strategic_decisions"
+    can_access_states:
+      - "National"
+
+  regional_compliance_officer:
+    name: "Regional Compliance Officer"
+    jurisdiction: "India"
+    access_level: 2
+    permissions:
+      - "retrieve_regional_documents"
+      - "verify_state_level_compliance"
+      - "generate_regional_reports"
+      - "access_state_regulations"
+    restricted_document_types:
+      - "customer_pii"
+      - "pan_india_strategies"
+    # Must specify which states they can access
+    can_access_states: []  # To be specified per officer
+
+  legal_counsel:
+    name: "Legal Counsel"
+    jurisdiction: "India"
+    access_level: 3
+    permissions:
+      - "retrieve_regulatory_documents"
+      - "access_legal_framework"
+      - "generate_legal_opinions"
+      - "review_compliance_status"
+    restricted_document_types:
+      - "customer_pii"
+      - "confidential_strategies"
+    can_access_states:
+      - "National"
+
+  training_officer:
+    name: "Training and Development Officer"
+    jurisdiction: "India"
+    access_level: 1
+    permissions:
+      - "retrieve_regulatory_guidelines"
+      - "access_training_materials"
+      - "view_compliance_summaries"
+    restricted_document_types:
+      - "customer_pii"
+      - "sensitive_internal_data"
+      - "executive_decisions"
+    can_access_states:
+      - "National"
+
+# Default role for new users
+default_role: "training_officer"
+
+# Access level hierarchy
+access_hierarchy:
+  5: "System Administrator"
+  4: "Senior Compliance Manager"
+  3: "Compliance Manager"
+  2: "Regional Officer"
+  1: "Viewer"
+
+# Sensitive data restrictions
+sensitive_data_marking:
+  high_sensitivity:
+    - "customer_pii"
+    - "insider_information"
+    - "confidential_strategies"
+    min_access_level: 3
+  
+  medium_sensitivity:
+    - "internal_memos"
+    - "transactional_details"
+    min_access_level: 2
+  
+  low_sensitivity:
+    - "public_guidelines"
+    - "regulatory_summaries"
+    min_access_level: 1
