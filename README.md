@@ -1,288 +1,48 @@
-# FinGuard-RAG: Secure RAG Built for Financial Compliance
+# FinGuard-RAG: Secure Financial Compliance Framework
 
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg)
-![Status: Active Development](https://img.shields.io/badge/Status-Active%20Development-green.svg)
+**FinGuard-RAG** is a specialized Retrieval-Augmented Generation (RAG) system designed for multinational financial institutions. [cite_start]Unlike standard RAG deployments, it integrates a "Security-First" architecture to handle jurisdictional conflicts, regulatory drift, and sensitive data leakage [cite: 841, 843-845].
 
-## Abstract
+## 🚀 Key Features
 
-FinGuard-RAG is a financially compliant Retrieval-Augmented Generation (RAG) framework designed for Indian financial institutions. It addresses domain-specific challenges including jurisdictional inconsistencies, regulatory drift, and compliance violations.
+* [cite_start]**Policy-Aware Retrieval (RBAC):** Constrains document access based on the user's specific role (e.g., CEO vs. Junior Analyst) and location[cite: 847].
+* [cite_start]**Time-Versioned Retrieval:** Mitigates "Regulatory Drift" by prioritizing the most recent laws (e.g., favoring 2026 circulars over older versions)[cite: 848].
+* [cite_start]**Compliance-Verified Generation:** A neuro-symbolic validation layer that scans AI responses for violations before they reach the user[cite: 849].
+* [cite_start]**Role-Inference Leakage Defense:** Detects and blocks indirect attempts to uncover sensitive company secrets like salary bands or M&A data[cite: 850].
+* [cite_start]**Jurisdiction-Conflict Resolution:** Identifies and explains contradictions between different legal regimes (e.g., Ind AS vs. IFRS)[cite: 851].
 
-This framework integrates **policy-aware retrieval**, **time-versioned document handling**, and **compliance-verified generation** to ensure that financial RAG systems are reliable and trustworthy for compliance-critical applications. It is specifically tailored to meet Indian regulatory requirements enforced by the RBI, SEBI, FIPB, and other financial regulators.
+## 🏗️ System Architecture
 
----
+The system operates as a multi-stage security pipeline:
+1.  **Request Phase:** The user query is routed through an **RBAC & Query Router** that identifies role and jurisdiction.
+2.  **Retrieval Phase:** The **Policy-Aware Retrieval** module consults the **Support Modules** (Document Store and Risk Scorer) to fetch only authorized, low-risk data.
+3.  **Generation Phase:** The **LLM Generator** (Gemini 1.5 Flash) produces a draft response based on the "Safe Draft".
+4.  **Validation Phase:** The **Compliance Validator** cross-checks the answer against rules in the **Guard Modules** before final release.
 
-## Core Features (Current Scope)
 
-### 🔍 Policy-Aware Retrieval
-- Role-based document filtering (e.g., Compliance Analyst, Auditor, Risk Manager)
-- Jurisdiction-aware retrieval constrained to Indian regulatory scope
-- Metadata-based filtering to ensure only relevant regulatory documents are retrieved
 
-### ⏱️ Time-Versioned Retrieval
-- Temporal filtering that prioritizes newer circulars and guidelines over older ones
-- Mitigates regulatory drift by tracking document effective dates
-- Ensures responses reflect the most current regulatory interpretation
+## 🛠️ Tech Stack
 
-### ✅ Compliance-Verified Generation
-- Post-generation validation layer that checks responses against known compliance rules
-- Keyword and rule-based checks (e.g., correct regulatory body citations, prohibited advice)
-- Secondary LLM call to flag potential violations before response is returned
-- Conservative, governance-aligned output
+* [cite_start]**Frontend:** React (Lucide-React, Headless UI)[cite: 288, 301].
+* [cite_start]**Backend:** FastAPI (Python)[cite: 673, 675].
+* [cite_start]**Vector Database:** ChromaDB[cite: 264, 274].
+* [cite_start]**LLM:** Gemini 1.5 Flash[cite: 76].
+* [cite_start]**Embeddings:** Sentence-Transformers (`all-MiniLM-L6-v2`)[cite: 273, 811].
 
-### 🖥️ Streamlit Demo UI *(if time permits)*
-- Simple query interface with role selector
-- Displays retrieved documents alongside generated response
-- Shows compliance check results
+## 📂 Project Structure
 
----
-
-## System Architecture
-
-```
-FinGuard-RAG Framework
-├── Document Ingestion
-│   └── RBI/SEBI PDF loader + chunker
-├── Embedding + Vector Store (FAISS / ChromaDB)
-├── Policy-Aware Retrieval Engine
-│   ├── Role-Based Metadata Filter
-│   └── Temporal Document Filter
-├── Generation Pipeline
-│   ├── LLM Query Handler (Gemini / OpenAI)
-│   └── Compliance Verification Layer
-└── (Optional) Streamlit UI
-```
-
----
-
-## Project Structure
-
-```
-Finguard/
-├── README.md
-├── requirements.txt
-├── setup.py
-├── .env.example
-├── .gitignore
-├── LICENSE
-│
-├── src/
-│   ├── __init__.py
-│   ├── main.py                          # Entry point
-│   │
-│   ├── retrieval/
-│   │   ├── __init__.py
-│   │   ├── policy_aware_retriever.py    # Role + jurisdiction filtering
-│   │   ├── time_versioned_retriever.py  # Temporal document filtering
-│   │   └── embedder.py                  # Embedding generation
-│   │
-│   ├── generation/
-│   │   ├── __init__.py
-│   │   ├── llm_handler.py               # LLM API integration
-│   │   └── compliance_verifier.py       # Post-generation compliance check
-│   │
-│   └── utils/
-│       ├── __init__.py
-│       ├── data_processor.py            # PDF loading and chunking
-│       └── config_loader.py             # Config and env handling
-│
+```text
+finguard-rag/
 ├── data/
-│   ├── documents/
-│   │   ├── rbi_circulars/               # RBI Master Circulars
-│   │   ├── sebi_guidelines/             # SEBI Regulations
-│   │   └── README.md
-│   │
-│   ├── compliance_rules/
-│   │   ├── rules.json                   # Compliance rule definitions
-│   │   └── role_permissions.json        # Role-based access permissions
-│   │
-│   └── embeddings/
-│       └── .gitkeep
-│
-├── config/
-│   ├── default_config.yaml
-│   ├── roles.yaml                       # Role definitions and permissions
-│   └── compliance_rules.yaml
-│
-├── tests/
-│   ├── __init__.py
-│   ├── test_retrieval.py
-│   ├── test_generation.py
-│   └── test_compliance.py
-│
-├── notebooks/
-│   ├── 01_data_exploration.ipynb
-│   ├── 02_retrieval_analysis.ipynb
-│   └── 03_compliance_validation.ipynb
-│
-└── docs/
-    ├── ARCHITECTURE.md
-    ├── SETUP.md
-    ├── USAGE.md
-    └── COMPLIANCE.md
-```
-
----
-
-## Installation
-
-### Prerequisites
-- Python 3.8 or higher
-- pip
-
-### Quick Start
-
-```bash
-# Clone the repository
-git clone https://github.com/ama1a005/Finguard.git
-cd Finguard
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Configure environment
-cp .env.example .env
-# Edit .env with your API keys (OpenAI / Gemini)
-```
-
----
-
-## Usage
-
-### Basic Example
-
-```python
-from src.retrieval.policy_aware_retriever import PolicyAwareRetriever
-from src.generation.llm_handler import LLMHandler
-from src.generation.compliance_verifier import ComplianceVerifier
-
-# Initialize with role and jurisdiction
-retriever = PolicyAwareRetriever(
-    role="compliance_analyst",
-    jurisdiction="India"
-)
-
-llm = LLMHandler()
-verifier = ComplianceVerifier()
-
-# Query
-query = "What are the capital adequacy requirements under RBI guidelines?"
-documents = retriever.retrieve(query)
-
-# Generate response
-response = llm.generate(query, documents)
-
-# Verify compliance
-is_compliant, violations = verifier.verify(response)
-
-print(f"Response: {response}")
-print(f"Compliant: {is_compliant}")
-print(f"Violations: {violations}")
-```
-
----
-
-## Configuration
-
-### Roles (`config/roles.yaml`)
-
-```yaml
-roles:
-  compliance_analyst:
-    access: [rbi_circulars, sebi_guidelines]
-    description: Full access to regulatory documents
-  auditor:
-    access: [rbi_circulars]
-    description: Read-only access to banking regulations
-  risk_manager:
-    access: [rbi_circulars, sebi_guidelines]
-    description: Access to risk-related regulatory documents
-```
-
-### Compliance Rules (`data/compliance_rules/rules.json`)
-
-```json
-{
-  "rules": [
-    {
-      "id": "R001",
-      "description": "Response must cite correct regulatory body",
-      "check": "regulatory_body_present"
-    },
-    {
-      "id": "R002",
-      "description": "Response must not provide direct investment advice",
-      "check": "no_direct_investment_advice"
-    }
-  ]
-}
-```
-
----
-
-## Testing
-
-```bash
-# Run all tests
-pytest tests/
-
-# Run with coverage
-pytest tests/ --cov=src --cov-report=html
-```
-
----
-
-## Future Work *(Out of current scope)*
-
-The following features are planned for future iterations but are not part of the current implementation:
-
-- 🛡️ Role-inference leakage detection and defense
-- ⚖️ Multi-jurisdiction conflict resolution
-- 🔐 Encryption utilities and audit logging
-- 🌐 Real-time regulatory updates from RBI and SEBI
-- 🗣️ Multi-language support (Hindi, regional languages)
-- ☸️ Docker / Kubernetes deployment
-
----
-
-## Reference Papers
-
-This work builds upon the following research:
-
-- *Securing RAG: A Risk Assessment and Mitigation Framework*
-- *Provably Secure Retrieval-Augmented Generation*
-- *SafeRAG: Benchmarking Security in Retrieval-Augmented Generation of Large Language Models*
-
----
-
-## License
-
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
-
----
-
-## Citation
-
-```bibtex
-@software{finguard_rag_2026,
-  title={FinGuard-RAG: Secure RAG Built for Financial Compliance},
-  author={Your Name},
-  year={2026},
-  url={https://github.com/ama1a005/Finguard}
-}
-```
-
----
-
-## Contact & Support
-
-- **Issues:** [GitHub Issues](https://github.com/ama1a005/Finguard/issues)
-- **Documentation:** See `docs/` directory
-
----
-
-*Status: Active Development | Last Updated: April 2026*
+│   ├── corpus/               
+│   │   ├── sebi/             # Real SEBI PDFs
+│   │   ├── rbi/              # Real RBI PDFs
+│   │   ├── mca/              # Real MCA PDFs
+│   │   ├── icai/             # Real Accounting Standards
+│   │   └── synthetic/        # Internal Policy documents
+│   └── chroma_db/            # Vector store storage
+├── finguard_rag/
+│   ├── ingestion/            # M1: Data processing & chunking
+│   ├── agent/                # Core RAG logic & Gemini integration
+│   ├── api/                  # FastAPI endpoints
+│   └── defense/              # Leakage & security modules
+└── frontend/                 # React application
