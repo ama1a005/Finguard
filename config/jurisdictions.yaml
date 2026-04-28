@@ -1,0 +1,104 @@
+# India-Specific Jurisdictions Configuration
+
+jurisdictions:
+  India:
+    name: "India"
+    country_code: "IN"
+    primary_regulator: "RBI"
+    regulators:
+      - name: "Reserve Bank of India"
+        acronym: "RBI"
+        scope: "Banking and monetary policy"
+        website: "https://www.rbi.org.in"
+      - name: "Securities and Exchange Board of India"
+        acronym: "SEBI"
+        scope: "Securities and derivatives markets"
+        website: "https://www.sebi.gov.in"
+      - name: "Foreign Investment Promotion Board"
+        acronym: "FIPB"
+        scope: "Foreign direct investment"
+        website: "https://dpiit.gov.in"
+      - name: "Insurance Regulatory and Development Authority"
+        acronym: "IRDA"
+        scope: "Insurance sector"
+        website: "https://www.irdai.gov.in"
+    
+    banking_regulations:
+      - "RBI Act, 1934"
+      - "Banking Regulation Act, 1949"
+      - "Payment and Settlement Systems Act, 2007"
+      - "Bharatiya Reserve Bank of India Act, 2023"
+    
+    securities_regulations:
+      - "Securities Contracts (Regulation) Act, 1956"
+      - "SEBI Act, 1992"
+      - "Depositories Act, 1996"
+    
+    forex_regulations:
+      - "Foreign Exchange Management Act (FEMA), 1999"
+      - "Foreign Direct Investment Policy"
+    
+    accounting_standards:
+      - "Indian Accounting Standards (IND-AS)"
+      - "Generally Accepted Accounting Principles (GAAP)"
+    
+    tax_regulations:
+      - "Income Tax Act, 1961"
+      - "Goods and Services Tax (GST) Act, 2017"
+    
+    data_protection:
+      - "Digital Personal Data Protection Act, 2023"
+      - "Information Technology Act, 2000"
+    
+    aml_kyc_regulations:
+      - "AML Standards"
+      - "KYC Guidelines"
+    
+    states:
+      - "Andhra Pradesh"
+      - "Arunachal Pradesh"
+      - "Assam"
+      - "Bihar"
+      - "Chhattisgarh"
+      - "Goa"
+      - "Gujarat"
+      - "Haryana"
+      - "Himachal Pradesh"
+      - "Jharkhand"
+      - "Karnataka"
+      - "Kerala"
+      - "Madhya Pradesh"
+      - "Maharashtra"
+      - "Manipur"
+      - "Meghalaya"
+      - "Mizoram"
+      - "Nagaland"
+      - "Odisha"
+      - "Punjab"
+      - "Rajasthan"
+      - "Sikkim"
+      - "Tamil Nadu"
+      - "Telangana"
+      - "Tripura"
+      - "Uttar Pradesh"
+      - "Uttarakhand"
+      - "West Bengal"
+      - "Chandigarh"
+      - "Dadra and Nagar Haveli"
+      - "Daman and Diu"
+      - "Lakshadweep"
+      - "Delhi"
+      - "Puducherry"
+
+    risk_levels:
+      high_risk: "Strict compliance required, multiple approval levels"
+      medium_risk: "Standard compliance checks"
+      low_risk: "Basic validation required"
+
+# Indian Financial Compliance Thresholds
+compliance_thresholds:
+  kyc_renewal_days: 365
+  aml_monitoring_days: 30
+  transaction_monitoring_limit: 500000  # INR
+  suspicious_activity_alert: true
+  daily_transaction_limit: 10000000  # INR

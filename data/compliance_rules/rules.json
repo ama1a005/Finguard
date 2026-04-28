@@ -1,0 +1,215 @@
+{
+  "compliance_rules": [
+    {
+      "rule_id": "RBI_001",
+      "rule_name": "RBI Minimum Capital Requirements",
+      "regulator": "RBI",
+      "regulation": "Basel III Framework",
+      "jurisdiction": "India",
+      "description": "Banks must maintain minimum capital adequacy ratio of 9% (Tier 1) + 6% (Tier 2)",
+      "validation_type": "numerical_threshold",
+      "threshold": {
+        "tier1_minimum": 9.0,
+        "tier2_minimum": 6.0
+      },
+      "severity": "high",
+      "automatic_enforcement": true
+    },
+    {
+      "rule_id": "RBI_002",
+      "rule_name": "RBI KYC Compliance",
+      "regulator": "RBI",
+      "regulation": "Know Your Customer Guidelines",
+      "jurisdiction": "India",
+      "description": "All customers must undergo KYC verification before opening accounts",
+      "validation_type": "document_verification",
+      "required_documents": ["PAN", "Address Proof", "Identity Proof"],
+      "severity": "critical",
+      "automatic_enforcement": true
+    },
+    {
+      "rule_id": "RBI_003",
+      "rule_name": "RBI Loan Loss Provisions",
+      "regulator": "RBI",
+      "regulation": "Prudential Norms for Classification and Provisioning",
+      "jurisdiction": "India",
+      "description": "Banks must provision for loan losses as per NPA classification",
+      "validation_type": "numerical_calculation",
+      "severity": "high",
+      "automatic_enforcement": true
+    },
+    {
+      "rule_id": "RBI_004",
+      "rule_name": "RBI Large Exposures",
+      "regulator": "RBI",
+      "regulation": "Large Exposure Framework",
+      "jurisdiction": "India",
+      "description": "Large exposure to a single borrower cannot exceed 25% of Tier 1 capital",
+      "validation_type": "numerical_threshold",
+      "threshold": {
+        "max_exposure_percentage": 25
+      },
+      "severity": "high",
+      "automatic_enforcement": true
+    },
+    {
+      "rule_id": "SEBI_001",
+      "rule_name": "SEBI Disclosure Requirements",
+      "regulator": "SEBI",
+      "regulation": "SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015",
+      "jurisdiction": "India",
+      "description": "Listed companies must disclose material information within 24 hours",
+      "validation_type": "time_threshold",
+      "threshold": {
+        "disclosure_hours": 24
+      },
+      "severity": "high",
+      "automatic_enforcement": true
+    },
+    {
+      "rule_id": "SEBI_002",
+      "rule_name": "SEBI Corporate Governance",
+      "regulator": "SEBI",
+      "regulation": "SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015",
+      "jurisdiction": "India",
+      "description": "Companies must have independent directors as per SEBI norms",
+      "validation_type": "document_verification",
+      "required_elements": ["Independent Directors Min 1/3", "Board Diversity"],
+      "severity": "high",
+      "automatic_enforcement": false
+    },
+    {
+      "rule_id": "SEBI_003",
+      "rule_name": "SEBI Insider Trading Prevention",
+      "regulator": "SEBI",
+      "regulation": "SEBI (Prohibition of Insider Trading) Regulations, 2015",
+      "jurisdiction": "India",
+      "description": "Insiders cannot trade on material non-public information",
+      "validation_type": "behavioral_monitoring",
+      "severity": "critical",
+      "automatic_enforcement": false
+    },
+    {
+      "rule_id": "IND_AS_001",
+      "rule_name": "IND-AS 101 First-time Adoption",
+      "regulator": "Ministry of Corporate Affairs",
+      "regulation": "Accounting Standards (IND-AS)",
+      "jurisdiction": "India",
+      "description": "Companies must follow IND-AS standards for financial reporting",
+      "validation_type": "accounting_standard",
+      "severity": "high",
+      "automatic_enforcement": false
+    },
+    {
+      "rule_id": "IND_AS_002",
+      "rule_name": "IND-AS 36 Impairment of Assets",
+      "regulator": "Ministry of Corporate Affairs",
+      "regulation": "Accounting Standards (IND-AS)",
+      "jurisdiction": "India",
+      "description": "Assets must be tested for impairment annually",
+      "validation_type": "accounting_requirement",
+      "severity": "medium",
+      "automatic_enforcement": false
+    },
+    {
+      "rule_id": "FEMA_001",
+      "rule_name": "FEMA Foreign Direct Investment",
+      "regulator": "FIPB/DPIIT",
+      "regulation": "Foreign Exchange Management Act (FEMA), 1999",
+      "jurisdiction": "India",
+      "description": "Foreign direct investment must comply with FDI policy and sectoral caps",
+      "validation_type": "policy_verification",
+      "severity": "high",
+      "automatic_enforcement": false
+    },
+    {
+      "rule_id": "FEMA_002",
+      "rule_name": "FEMA Remittance Limits",
+      "regulator": "RBI",
+      "regulation": "FEMA - Liberalised Remittance Scheme",
+      "jurisdiction": "India",
+      "description": "Residents can remit up to USD 2,50,000 per financial year",
+      "validation_type": "numerical_threshold",
+      "threshold": {
+        "annual_remittance_limit_usd": 250000
+      },
+      "severity": "medium",
+      "automatic_enforcement": true
+    },
+    {
+      "rule_id": "GST_001",
+      "rule_name": "GST Compliance",
+      "regulator": "CBIC",
+      "regulation": "Goods and Services Tax Act, 2017",
+      "jurisdiction": "India",
+      "description": "All businesses above threshold must register and file GST returns",
+      "validation_type": "numerical_threshold",
+      "threshold": {
+        "annual_turnover_threshold_lakhs": 40
+      },
+      "severity": "high",
+      "automatic_enforcement": false
+    },
+    {
+      "rule_id": "AML_001",
+      "rule_name": "AML/CFT Compliance",
+      "regulator": "RBI",
+      "regulation": "Prevention of Money Laundering Act (PMLA), 2002",
+      "jurisdiction": "India",
+      "description": "Banks must have Anti-Money Laundering and Counter Financing of Terrorism programs",
+      "validation_type": "behavioral_monitoring",
+      "severity": "critical",
+      "automatic_enforcement": false
+    },
+    {
+      "rule_id": "IT_ACT_001",
+      "rule_name": "Information Technology Act 2000",
+      "regulator": "Ministry of Electronics and IT",
+      "regulation": "Information Technology Act, 2000",
+      "jurisdiction": "India",
+      "description": "Organizations handling digital data must comply with IT Act provisions",
+      "validation_type": "policy_verification",
+      "severity": "high",
+      "automatic_enforcement": false
+    },
+    {
+      "rule_id": "DPDP_001",
+      "rule_name": "Digital Personal Data Protection",
+      "regulator": "Ministry of Electronics and IT",
+      "regulation": "Digital Personal Data Protection Act, 2023",
+      "jurisdiction": "India",
+      "description": "Organizations must protect personal data and obtain consent for processing",
+      "validation_type": "data_protection_check",
+      "severity": "critical",
+      "automatic_enforcement": false
+    }
+  ],
+  "jurisdiction_mappings": {
+    "India": {
+      "primary_rules": [
+        "RBI_001", "RBI_002", "RBI_003", "RBI_004",
+        "SEBI_001", "SEBI_002", "SEBI_003",
+        "IND_AS_001", "IND_AS_002",
+        "FEMA_001", "FEMA_002",
+        "GST_001", "AML_001",
+        "IT_ACT_001", "DPDP_001"
+      ],
+      "secondary_rules": []
+    }
+  },
+  "rule_categories": {
+    "banking": ["RBI_001", "RBI_002", "RBI_003", "RBI_004"],
+    "securities": ["SEBI_001", "SEBI_002", "SEBI_003"],
+    "accounting": ["IND_AS_001", "IND_AS_002"],
+    "forex": ["FEMA_001", "FEMA_002"],
+    "tax": ["GST_001"],
+    "aml_cft": ["AML_001"],
+    "data_protection": ["IT_ACT_001", "DPDP_001"]
+  },
+  "rule_updates": {
+    "last_updated": "2026-03-04",
+    "next_review": "2026-06-04",
+    "update_frequency_days": 30,
+    "source": "RBI, SEBI, Ministry of Corporate Affairs, CBIC, NITI Aayog"
+  }
+}
